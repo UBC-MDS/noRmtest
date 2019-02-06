@@ -1,4 +1,5 @@
 # noRmtest
+By Coste Shuster, Sylvia Lee, Richie Zitomer
 
 This is an R package that tests for normality in your data!
 
