@@ -10,7 +10,7 @@ make_qqplot(data)
 \item{data, }{DATAFRAME where data for each continous variable is in its respective column}
 }
 \value{
-DICTIONARY of plots kere the keys are the column name (or index)
+LIST of plots where the name of each item are the column name (or index)
 }
 \description{
 Create QQ-plot for each continuous variable in the data
