@@ -8,11 +8,10 @@ Authors@R: c(
            email = "first.last@example.com"),
     person(given = "Sylvia",
            family = "Lee",
-           role = c("aut", "cre"),
+           role = c("aut"),
            email = "sylvia199619lee@gmail.com"),
     person(given = "Richie",
            family = "Zitomer",
-           role = c("aut", "cre"),
            email = "first.last@example.com"))
 Description: This package will test your data for normality using a graphical and a statistical method. 
   As a graphical method, quantile-quantile plots (Q-Q plot) will be constructed in order for you to visualize 
