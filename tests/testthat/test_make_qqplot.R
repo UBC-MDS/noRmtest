@@ -27,7 +27,7 @@ test_that("Test that each element is a plot", {
 
   plots <- make_qqplot(data)
 
-  for (plt in plot) {
+  for (plt in plots) {
    expect_is(plt,"ggplot")
   }
 })
