@@ -1,3 +1,4 @@
+library(ggplot2)
 # This script tests the make_qqplot function
 
 context("Test make_qqplot")
