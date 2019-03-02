@@ -2,15 +2,39 @@
 #'
 #' Create QQ-plot for each continuous variable in the data
 #'
-#' @param data, DATAFRAME where data for each continous variable is in its respective column
+#' @param data, VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column
 #'
-#' @return DICTIONARY of plots kere the keys are the column name (or index)
+#' @return List of plots where the list names are the column names (or index)
 #' @export
 #'
 #' @examples
 #' iris_data <- data.frame("length" = c(1,2,3,4), "width" = c(5,6,7,8))
 #' make_qqplot(iris_data)
+library(ggplot2)
+
+make_single_qqplot <- function(column) {
+  x <- quantile(rnorm(1000),probs=seq(0, 1, 1/20),names=FALSE) # Get a thousand observations for a theoretical dist
+
+  y <- quantile(column,probs=seq(0, 1, 1/20),names=FALSE)
+
+  to_plot <- data.frame('Theoretical'=x, 'Actual'=y)
+  ggplot(to_plot,aes(x,y)) +
+    geom_point() +
+    labs(title="Q-Q Plot") +
+    xlab("Theoretical") +
+    ylab("Actual")
+}
 
 make_qqplot <- function(data){
-  print("make_qqplot - empty function")
+  # Handle non-numeric
+  if (class(data) == 'numeric') {
+    make_single_qqplot(data)
+  } else if (class(data) %in% c('list','data.frame')) {
+    lapply(data,make_single_qqplot)
+  } else if (class(data) == 'matrix') {
+    apply(data,2,make_single_qqplot)
+  }
+  else {
+    stop("Type Error")
+  }
 }
