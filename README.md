@@ -14,17 +14,17 @@ This package will test your data for normality using a graphical and a statistic
 ### Package functions:  
 1. `make_qqplot()`
     - **description:** this function will read in data and will create a QQ-plot for each continuous variable in the data. It will output a dictionary of plot objects and print them to screen as default (the user will have the option of not printing plots).
-    - **input:** dataframe, list, array, or matrix
+    - **input:** dataframe, list, vector, array, or matrix
     - **output:** list of plots
 2. `shapiro_wilk()`
     - **description:** this function will read in data and will output the shapiro-wilks test for normality for each continuous variable in the data. The output will be  tuple of lists where the first list contains the test statistics in the order of the variables in the input dataframe and the second list contains the p-values in the same respective ordering.   
-    - **input:** dataframe, list, array, or matrix
+    - **input:** dataframe, list, vector, array, or matrix
     - **output:** tuple of lists
         - first list: test statistic
         - second list: p-value
 3. `params_mle()`
     - **description:** this function will read in data and will output the mean and variance for the empirical distribution of the data given that the data is normal for each continuous variable in the data. The output will be a dataframe with one row for the mean and one row for the variance with the columns presenting the original variables in the data.
-    - **input:** dataframe, list, array, or matrix
+    - **input:** dataframe, list, vector, array, or matrix
     - **output:** dataframe
         - columns: variables
         - rows: mean, variance
