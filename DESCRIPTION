@@ -12,6 +12,7 @@ Authors@R: c(
            email = "sylvia199619lee@gmail.com"),
     person(given = "Richie",
            family = "Zitomer",
+           role = c("aut"),
            email = "first.last@example.com"))
 Description: This package will test your data for normality using a graphical and a statistical method. 
   As a graphical method, quantile-quantile plots (Q-Q plot) will be constructed in order for you to visualize 
@@ -27,3 +28,8 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat,
     covr
+Imports: 
+    ggplot2,
+    tidyverse,
+    nlme,
+    stats

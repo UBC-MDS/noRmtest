@@ -2,15 +2,20 @@
 #'
 #' Conduct the Shapiro-Wilk test for every continuous variable in the data to test against normality
 #'
+#' @name shapiro_wilk
+#'
 #' @param data, VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column
 #'
 #' @return LIST where the first vector contains the test statistics and the second vector contains the p-values. Both are ordered same as column of input.
-#' @export
+#'
+#' @import stats
+#'
+#' @export shapiro_wilk
 #'
 #' @examples
 #' iris_data <- data.frame("length" = c(1,2,3,4,5,6,7,8), "width" = c(9,10,11,12,13,14,15,16))
 #' shapiro_wilk(iris_data)
-#'
+
 library(tidyverse)
 
 shapiro_wilk <- function(data){

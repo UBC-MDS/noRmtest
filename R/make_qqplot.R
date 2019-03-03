@@ -2,14 +2,20 @@
 #'
 #' Create QQ-plot for each continuous variable in the data
 #'
+#' @name make_qqplot
+#'
 #' @param data, VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column
 #'
 #' @return List of plots where the list names are the column names (or index)
-#' @export
+#'
+#' @import stats ggplot2
+#'
+#' @export make_qqplot
 #'
 #' @examples
 #' iris_data <- data.frame("length" = c(1,2,3,4), "width" = c(5,6,7,8))
 #' make_qqplot(iris_data)
+
 library(ggplot2)
 
 make_single_qqplot <- function(column) {

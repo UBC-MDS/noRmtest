@@ -3,3 +3,5 @@
 export(make_qqplot)
 export(params_mle)
 export(shapiro_wilk)
+import(ggplot2)
+import(stats)

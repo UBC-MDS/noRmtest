@@ -3,20 +3,16 @@
 \name{shapiro_wilk}
 \alias{shapiro_wilk}
 \title{shapiro_wilk}
-\usage{
-shapiro_wilk(data)
-}
 \arguments{
-\item{data, }{DATAFRAME where data for each continous variable is in its respective column}
+\item{data, }{VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column}
 }
 \value{
-LISTS where the first list contains the test statistics and the second list contains the p-values in the order of the continuous variables in the dataframe
+LIST where the first vector contains the test statistics and the second vector contains the p-values. Both are ordered same as column of input.
 }
 \description{
 Conduct the Shapiro-Wilk test for every continuous variable in the data to test against normality
 }
 \examples{
-iris_data <- data.frame("length" = c(1,2,3,4), "width" = c(5,6,7,8))
+iris_data <- data.frame("length" = c(1,2,3,4,5,6,7,8), "width" = c(9,10,11,12,13,14,15,16))
 shapiro_wilk(iris_data)
-
 }
