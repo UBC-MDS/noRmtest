@@ -33,3 +33,8 @@ Imports:
     tidyverse,
     nlme,
     stats
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+

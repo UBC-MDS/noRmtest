@@ -2,12 +2,12 @@
 #' Authors: Constantin Shuster, Richie Zitomer, Sylvia Lee
 #'
 #' This script tests the function from shapiro_wilk.R
-#' 
+#'
 #' Parameters
 #' ----------
 #' None
-#' 
-#' 
+#'
+#'
 #' Returns
 #' -------
 #' Throws errors if tests fail
@@ -15,15 +15,24 @@
 context("Evaluate normality using Shapiro-Wilk test")
 
 # Sample data
-data <-  data.frame('a'= c(1,2,3),
-                    'b'= c(4,5,6))
-data_bad <-  data.frame('a'= c("ab", "cd", "ef"),
+data <-  data.frame('a'= c(1,2,3,5,6,8),
+                    'b'= c(4,5,6,7,11,15))
+data_bad1 <-  data.frame('a'= c("ab", "cd", "ef"),
                         'b'= c("TRUE", "FALSE", "TRUE"))
+data_bad2 <- data.frame()
+data_bad3 <- c(1,2,3)
+data_vector <- c(1,2,3,6,7,8)
+data_matrix <- matrix(c(1,2,3,99,9,8,7,3,2,11,12,13), nrow = 4, ncol = 3, byrow = TRUE,
+                      dimnames = list(c("r1", "r2","r3","r4"),
+                                      c("C.1", "C.2", "C.3")))
+data_array <- array(c(1,2,3,4,5,6))
 
-#' Check that function returnes a list
+#' Check that function returnes a list with different inputs
 test_that("Test that output is a list", {
-  stats <- shapiro_wilk(data)
-  expect_true(typeof(stats) == "list")
+  expect_true(typeof(shapiro_wilk(data)) == "list")
+  expect_true(typeof(shapiro_wilk(data_vector)) == "list")
+  expect_true(typeof(shapiro_wilk(data_matrix)) == "list")
+  expect_true(typeof(shapiro_wilk(data_array)) == "list")
 })
 
 #' Check that length of list output is 2 (1 for  statistic values, other for p-values).
@@ -47,11 +56,23 @@ test_that("Test that both vectors in output list have the same lengths", {
 
 #' check that error is thrown with expression "no continuous variables to test" if dataframe doesn't have any
 test_that("Test that error is thrown if input has no continuous variables", {
-  expect_error(shapiro_wilk(data_bad), "no continuous variables to test")
+  expect_error(shapiro_wilk(data_bad1), "Not all values in data are numeric")
+})
+
+#' check that error is thrown for empty data
+test_that("Test that error is thrown if data input is empty", {
+  expect_error(shapiro_wilk(data_bad2), "Empty data input")
+})
+
+#' check that error is thrown for n <=3 or >5000
+test_that("Test that error is thrown if data input is empty", {
+  norm_values <- rnorm(6000, 5, 2)
+  expect_error(shapiro_wilk(norm_values), "Statistic is inaccurate when > 5000 observations. Please split data randomly.")
+  expect_error(shapiro_wilk(data_bad3), "Must have greater than 3 observations in each dataset to calculate this statistic.")
 })
 
 #' check that the shapiro-wilk test statistic is correctly calculated because p-value should be > 0.05 for this test
 test_that("Test that the S-W stat is properly calculated", {
   norm_values <- rnorm(100, 5, 2)
-  epexct_true(shapiro_wilk(norm_values)[2] > 0.05)
+  expect_true(shapiro_wilk(norm_values)[2] > 0.05)
 })
