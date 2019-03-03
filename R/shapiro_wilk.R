@@ -96,7 +96,7 @@ shapiro_wilk <- function(data){
     a[2] = -a[n-1]
     a[1] = -a[n]
     e = (M-(2*(m[n]^2))-(2*(m[n-1]^2)))/(1-(2*(a[n]^2))-(2*(a[n-1]^2)))
-    if (n-4 > 0){
+    if (n > 4){
       for (i in 3:(n-2)){
         a[i] = m[i]/sqrt(e)
       }
