@@ -51,7 +51,7 @@ The package has the following dependencies:
 
 
 ### Branch Coverage
-We have tests to ensure that are package is workuing as expected and will continue to do so into the future. As you can see, we have close to full branch coverage:
+We have tests to ensure that are package is working as expected and will continue to do so into the future. As you can see, we have close to full branch coverage:
 ![](branch_coverage.png)
 
 
