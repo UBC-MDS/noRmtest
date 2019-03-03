@@ -9,7 +9,27 @@ A common and important assumption that is made by many (and commonly used) param
 
 Graphical and statistical methods can be used to test whether sample data was drawn from a normal population. In normality testing it is important to remember that our null hypothesis is that the sample data is **NOT different** than a normal population with the same mean and variance. If we **fail to reject** this null hypothesis - meaning resultant p-value is > 0.05 - then we would be able to apply the appropriate parametric statistical methods to our data. Normality testing can also be used to check whether any sample data approximates a normally distributed population. More on this topic can be found [here](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3693611/) and [here](http://webspace.ship.edu/pgmarr/Geo441/Lectures/Lec%205%20-%20Normality%20Testing.pdf).
 
-This package will test your data for normality using a graphical and a statistical method. As a graphical method, quantile-quantile plots (Q-Q plot) will be constructed in order for you to visualize whether the data closely approximates a straight line - thereby indicating it is normally distributed. As a statistical method, the Shapiro-Wilk test score will be calculated along with the corresponding p-value. The Shapiro-Wilk test provides better power than most other statistical normality tests, as long as **most of the values are unique** [<sup>1</sup>](https://www.graphpad.com/guides/prism/7/statistics/index.htm?stat_choosing_a_normality_test.htm). This package will also derive the parameters that would fit your data to a normal distribution using maximum likelihood estimation.
+
+### Usage
+This package will test your data for normality using a graphical and a statistical method. As a graphical method, this package lets you see a quantile-quantile plots (Q-Q plot) in order for you to visualize whether the data closely approximates a straight line - thereby indicating it is normally distributed. As a statistical method, this package lets you calculate the Shapiro-Wilk test score along with the corresponding p-value. The Shapiro-Wilk test provides better power than most other statistical normality tests, as long as **most of the values are unique** [<sup>1</sup>](https://www.graphpad.com/guides/prism/7/statistics/index.htm?stat_choosing_a_normality_test.htm). This package will also derive the parameters that would fit your data to a normal distribution using maximum likelihood estimation.
+
+
+### Example
+![](example_usage.png)
+
+### Installation Instructions
+In order to install the package, run the following command from terminal:
+```{bash}
+devtools::install_github("https://github.com/UBC-MDS/noRmtest")
+```
+Then import the functions that you need.
+
+The package has the following dependencies:
+
+- ggplot2
+- tidyverse
+- nlme
+
 
 ### Package functions:  
 1. `make_qqplot()`
@@ -28,6 +48,12 @@ This package will test your data for normality using a graphical and a statistic
     - **output:** dataframe
         - columns: variables
         - rows: mean, variance
+
+
+### Branch Coverage
+We have tests to ensure that are package is working as expected and will continue to do so into the future. As you can see, we have close to full branch coverage:
+![](branch_coverage.png)
+
 
 ### Where does this fit into the R ecosystem
 
