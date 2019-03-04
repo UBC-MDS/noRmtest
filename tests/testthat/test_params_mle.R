@@ -7,6 +7,7 @@ list_2d_noname <- list(dummy$var1, dummy$var1)
 matrix_type <-  matrix(c(0,1,1,-1,-1,-1,0,1), ncol = 2)
 array_type <- array(c(0,1,1,-1))
 vector_type <- c(0,1,1,-1)
+
 # Expected output from Dummy
 expected_results <-  data.frame("var1" = c(1/4, 11/16), "var2" = c(-1/4, 11/16),
                                 row.names = c("Mean", "Variance"))
@@ -34,8 +35,10 @@ test_that("Invalid input types will throw error",{
   expect_error(params_mle(data.frame("var1" = c(1,2,"3", "4"))))
   expect_error(params_mle(matrix(c(TRUE, TRUE, FALSE, FALSE), ncol = 2, nrow = 2)))
 })
+
 test_that("Column Names for unnamed data types are correct",{
   expect_equal(colnames(params_mle(array_type)), "1")
   expect_equal(colnames(params_mle(list_2d_noname)), c("1", "2"))
   expect_equal(colnames(params_mle(vector_type)), "1")
+
 })

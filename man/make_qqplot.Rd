@@ -3,14 +3,11 @@
 \name{make_qqplot}
 \alias{make_qqplot}
 \title{make_qqplot}
-\usage{
-make_qqplot(data)
-}
 \arguments{
-\item{data, }{DATAFRAME where data for each continous variable is in its respective column}
+\item{data, }{VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column}
 }
 \value{
-LIST of plots where the name of each item are the column name (or index)
+List of plots where the list names are the column names (or index)
 }
 \description{
 Create QQ-plot for each continuous variable in the data
