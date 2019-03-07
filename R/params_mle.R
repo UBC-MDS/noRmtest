@@ -70,7 +70,6 @@ params_mle <- function(data){
     stop("Invalid data type, check if values are numeric", call. = FALSE)
   }
 
-
   ## Calculations
   ## ============
 
