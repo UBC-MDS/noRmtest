@@ -20,9 +20,6 @@ params_mle <- function(data){
   if (all(is.na(data))){
     stop("Empty data input", call. = FALSE)
   }
-  if(any(is.na(data))){
-    warning("Missing values detected in one or more variables, calculations adjusted to the removal of missing data")
-  }
 
   ## Conversion of data to matrix for further calculations
   if (is.array(data)){
@@ -68,6 +65,11 @@ params_mle <- function(data){
   if (is.factor(data)) {data = as.character(data)}
   if (typeof(data) != "double" & (typeof(data) != "integer")){
     stop("Invalid data type, check if values are numeric", call. = FALSE)
+  }
+
+  ## Check for missing values
+  if(any(is.na(data))){
+    warning("Missing values detected in one or more variables or uneven lists appended with NA. Calculations adjusted to the removal of missing data")
   }
 
   ## Calculations
