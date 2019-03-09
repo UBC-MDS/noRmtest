@@ -4,7 +4,7 @@
 #'
 #' @name shapiro_wilk
 #'
-#' @param data, VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column
+#' @param data, VECTOR, LIST, DATAFRAME, MATRIX, or ARRAY where data for each continous variable is in its respective column.
 #'
 #' @return LIST where the first vector contains the test statistics and the second vector contains the p-values. Both are ordered same as column of input.
 #'
