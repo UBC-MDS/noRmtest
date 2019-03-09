@@ -13,12 +13,6 @@ vignette: >
 knitr::opts_chunk$set()
 ```
 
-# noRmtest
-
-**2019-03-09**
-
-------
-
 ## noRmtest: This is an R package that tests your data for normality!
 
 A common and important assumption that is made by many (and commonly used) parametric statistical methods (t-tests, ANOVA and linear regression) is that the dependent variable (response variable) is normally distributed across all categories of the independent variables (predictors). Thus testing for normality in the data is an important step before applying parametric statistical methods.
