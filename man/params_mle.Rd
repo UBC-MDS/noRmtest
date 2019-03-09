@@ -7,7 +7,7 @@
 params_mle(data)
 }
 \arguments{
-\item{data, }{DATAFRAME，ARRAY, LISTS or VECTORS where data for each continous variable is in its respective column/list}
+\item{data, }{DATAFRAME, ARRAY, LISTS or VECTORS where data for each continous variable is in its respective column/list}
 }
 \value{
 DATAFRAME where the first row contains the estimated means and the second row contains the estimated variance, and the columns present the original variables in the data
