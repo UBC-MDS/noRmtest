@@ -17,11 +17,21 @@
 #' make_qqplot(iris_data)
 
 library(ggplot2)
+library(stats)
 
 make_single_qqplot <- function(column) {
   x <- quantile(rnorm(1000),probs=seq(0, 1, 1/20),names=FALSE) # Get a thousand observations for a theoretical dist
 
-  y <- quantile(column,probs=seq(0, 1, 1/20),names=FALSE)
+  y <- quantile(column,probs=seq(0, 1, 1/20),names=FALSE, na.rm=TRUE)
+
+  tryCatch({
+    if(sum(is.na(y))==length(y)){
+      error
+    }}, error = function(e) {
+      stop('Empty column or dataset passed')
+    }
+  )
+
 
   to_plot <- data.frame('Theoretical'=x, 'Actual'=y)
   ggplot(to_plot,aes(x,y)) +
@@ -32,15 +42,19 @@ make_single_qqplot <- function(column) {
 }
 
 make_qqplot <- function(data){
-  # Handle non-numeric
-  if (class(data) == 'numeric') {
-    make_single_qqplot(data)
-  } else if (class(data) %in% c('list','data.frame')) {
-    lapply(data,make_single_qqplot)
-  } else if (class(data) == 'matrix') {
-    apply(data,2,make_single_qqplot)
-  }
-  else {
-    stop("Type Error")
-  }
+  tryCatch({
+    # Handle non-numeric
+    if (class(data) == 'numeric') {
+      make_single_qqplot(data)
+    } else if (class(data) %in% c('list','data.frame')) {
+      lapply(data,make_single_qqplot)
+    } else if (class(data) == 'matrix') {
+      apply(data,2,make_single_qqplot)
+    }
+    else {
+      error
+    }
+  }, error = function(e) {
+    stop('Type Error')
+  })
 }

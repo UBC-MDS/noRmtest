@@ -18,22 +18,25 @@ This package will test your data for normality using a graphical and a statistic
 ```{r}
 library(noRmtest)
 data <- c(1,2,3,20) # Very simple example of a very non-normal dataset
-
-(params_mle(data)) # Returns a dataframe with the MLE mean and variance if the data was normal
-(shapiro_wilk(data)) # Returns a list with the Shapiro statistic and the p.value
-(make_qqplot(data)) # Returns a Q-Q plot to check for normality
 ```
-##### params_mle Output
 
+```{r}
+(params_mle(data)) # Returns a dataframe with the MLE mean and variance if the data was normal
+```
 ![](img/params_mle.png)
 
-##### shapiro_wilk Output
-
+```{r}
+(shapiro_wilk(data)) # Returns a list with the Shapiro statistic and the p.value
+```
 ![](img/shapiro_wilk_output.png)
 
-##### make_qqplot Output
 
+```{r}
+(make_qqplot(data)) # Returns a Q-Q plot to check for normality
+```
 ![](img/make_qqplot_output.png)
+
+
 
 ### Installation Instructions
 In order to install the package, run the following command from terminal:
