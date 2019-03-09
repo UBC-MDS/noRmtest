@@ -2,7 +2,7 @@
 #'
 #' Fit data to a Guassian distribution with Maximum Likelihood Estimation (MLE)
 #'
-#' @param data, DATAFRAME，ARRAY, LISTS or VECTORS where data for each continous variable is in its respective column/list
+#' @param data, DATAFRAME, ARRAY, LISTS or VECTORS where data for each continous variable is in its respective column/list
 #'
 #' @return DATAFRAME where the first row contains the estimated means and the second row contains the estimated variance, and the columns present the original variables in the data
 #' @export params_mle
