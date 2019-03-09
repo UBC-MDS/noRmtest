@@ -19,8 +19,13 @@ test_that("Test that output is a list", {
 })
 
 #' Check that function fails with non-numeric data
-test_that("Test that output is a list", {
+test_that("Test that function fails with non-numeric data", {
   expect_error(make_qqplot('abcd'))
+})
+
+#'Check that passing an empty dataset fails
+test_that("Test that passing an empty dataset fails", {
+  expect_error(make_qqplot(matrix()))
 })
 
 #'Check that length of list <= # of continuous vars in a dataframe.
@@ -57,6 +62,7 @@ test_that("Test that each element is a plot", {
     expect_is(plt,"ggplot")
   }
 })
+
 
 #'Check that the element names of the list are the name of the columns
 test_that("Test that list names are the names of the columns", {
