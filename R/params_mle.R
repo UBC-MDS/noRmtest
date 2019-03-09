@@ -2,7 +2,7 @@
 #'
 #' Fit data to a Guassian distribution with Maximum Likelihood Estimation (MLE)
 #'
-#' @param data, DATAFRAME where data for each continous variable is in its respective column
+#' @param data, DATAFRAME，ARRAY, LISTS or VECTORS where data for each continous variable is in its respective column/list
 #'
 #' @return DATAFRAME where the first row contains the estimated means and the second row contains the estimated variance, and the columns present the original variables in the data
 #' @export params_mle
@@ -16,6 +16,12 @@ params_mle <- function(data){
   ## Preprocessing
   ## =============
 
+  ## Check for empty datasets and missing data
+  if (all(is.na(data))){
+    stop("Empty data input", call. = FALSE)
+  }
+
+  ## Conversion of data to matrix for further calculations
   if (is.array(data)){
     if (length(dim(data)) == 1){
       var_names <- c(1)
@@ -33,27 +39,38 @@ params_mle <- function(data){
   } else if (is.list(data)){
     var_names <- names(data)
     if (is.null(var_names)){var_names <- seq(length(data))}
+
+    ## Address Exception where the lists are uneven
+    len <-  lapply(data, length)
+    tryCatch(stopifnot(length(unique(len)) == 1),
+             error = function(e){
+               len <- unlist(len)
+               for (var in c(1:length(data))){
+                 while(length(data[[var]]) < max(len)){
+                   data[[var]] = c(data[[var]], NA)
+               data <<- data
+                 }
+               }
+             })
+
     data <- matrix(unlist(data), ncol = length(data))
 
   } else if (is.vector(data)){
     var_names <- c(1)
     data <- matrix(data, ncol = 1)
-
   }
 
-  n_obs <- dim(data)[1]
-  n_var <- dim(data)[2]
 
-  ## Exception Handling
-  ## ==================
-  if (all(is.na(data))){
-    stop("Empty data input", call. = FALSE)
-  }
-
-  if (typeof(data) != "double" & typeof(data) != "integer"){
+  ## Check for non-numeric datatype
+  if (is.factor(data)) {data = as.character(data)}
+  if (typeof(data) != "double" & (typeof(data) != "integer")){
     stop("Invalid data type, check if values are numeric", call. = FALSE)
   }
 
+  ## Check for missing values
+  if(any(is.na(data))){
+    warning("Missing values detected in one or more variables or uneven lists appended with NA. Calculations adjusted to the removal of missing data")
+  }
 
   ## Calculations
   ## ============
@@ -62,13 +79,16 @@ params_mle <- function(data){
   mu <- colMeans(data, na.rm = TRUE)
 
   # Calculate sigma estimates
+  n_var <- dim(data)[2]
   if (n_var == 1){
-    variance <- array(colSums((data-mu[1])**2, na.rm = TRUE)/n_obs)
+    variance <- array(colMeans((data-mu[1])**2, na.rm = TRUE))
 
   } else{
-    variance <- array(rowSums(apply(data, 1, function(data){data-mu})**2, na.rm = TRUE)/n_obs,
+    variance <- array(rowMeans(apply(data, 1, function(data){data-mu})**2, na.rm = TRUE),
                       dim = c(1, n_var))
   }
+
+  stopifnot(variance >= 0)
 
   ## Return results
   ## ==============
@@ -76,4 +96,3 @@ params_mle <- function(data){
   colnames(mle_params) <- as.character(var_names)
   return(mle_params)
 }
-

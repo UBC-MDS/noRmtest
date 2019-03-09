@@ -18,6 +18,7 @@ test_that("Parameter estimation is correct", {
   expect_equal(params_mle(list_2d_type), expected_results)
   expect_equivalent(params_mle(array_type), expected_results["var1"])
   expect_equivalent(params_mle(vector_type), expected_results["var1"])
+  expect_equivalent(params_mle(list(c(0,1,1,-1,NA), c(-1,-1,0,1))), expected_results)
 })
 test_that("Type of returned variable is correct",{
   expect_true(is.data.frame(params_mle(dummy)))
