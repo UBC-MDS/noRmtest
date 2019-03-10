@@ -4,6 +4,8 @@ Contributors: Constantin Shuster, Sylvia Lee, Richie Zitomer
 
 This is an R package that tests your data for normality!
 
+[![Build Status](https://travis-ci.org/UBC-MDS/noRmtest.svg?branch=master)](https://travis-ci.org/UBC-MDS/noRmtest)
+
 ### Overview    
 A common and important assumption that is made by many (and commonly used) parametric statistical methods (t-tests, ANOVA and linear regression) is that the dependent variable (response variable) is normally distributed across all categories of the independent variables (predictors). Thus testing for normality in the data is an important step before applying parametric statistical methods.
 
@@ -39,8 +41,14 @@ data <- c(1,2,3,20) # Very simple example of a very non-normal dataset
 
 
 ### Installation Instructions
-In order to install the package, run the following command from terminal:
-```{bash}
+In order to install the package, first make sure you have devtools installed and loaded by running (in an R environment):
+```{r}
+install.packages("devtools", build_vignettes = TRUE)
+library(devtools) # load devtools
+```
+
+Then run the following command to install our package:
+```{r}
 devtools::install_github("https://github.com/UBC-MDS/noRmtest")
 ```
 Then import the functions that you need.
