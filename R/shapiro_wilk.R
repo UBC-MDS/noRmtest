@@ -48,12 +48,18 @@ shapiro_wilk <- function(data){
 
   ## Exception Handling
   ## ==================
-  if (all(is.na(data))){
-    stop("Empty data input", call. = FALSE)
-  }
-  if (typeof(data) != "double" & typeof(data) != "integer"){
-    stop("Not all values in data are numeric", call. = FALSE)
-  }
+  tryCatch({
+    if (all(is.na(data))){
+      error
+    }}, error = function(e) {
+      stop("Empty data input", call. = FALSE)
+    })
+  tryCatch({
+    if (typeof(data) != "double" & typeof(data) != "integer"){
+      error
+    }}, error = function(e){
+      stop("Not all values in data are numeric", call. = FALSE)
+    })
 
   # create lists to be returned
   shapiro_stats <- vector()
