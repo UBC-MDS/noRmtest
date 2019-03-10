@@ -49,7 +49,7 @@ library(devtools) # load devtools
 
 Then run the following command to install our package:
 ```{r}
-devtools::install_github("https://github.com/UBC-MDS/noRmtest")
+devtools::install_github("UBC-MDS/noRmtest", build_opts = c("--no-resave-data", "--no-manual"))
 ```
 Then import the functions that you need.
 
